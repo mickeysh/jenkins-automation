@@ -1,0 +1,30 @@
+---
+- name: Install docker registry
+  hosts: localhost 
+  tasks:
+    - name: Registry | Install Registry | Install pip
+      apt:
+        name: "{{ item }}"
+        update_cache: yes
+        state: present
+      become: true
+      become_method: sudo
+      with_items:
+        - python-pip
+
+    - name: Registry | Install Registry | Install Docker python module
+      pip:
+        name: docker-py
+      become: true
+      become_method: sudo
+    
+    - name: Registry | Install Registry | start registry container
+      docker_container:
+        name: registry
+        image: registry:2
+        state: started
+        ports: 
+        - "5000:5000"
+        restart_policy: always
+      become: true
+      become_method: sudo

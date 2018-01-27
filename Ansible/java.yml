@@ -1,0 +1,14 @@
+---
+- name: install java runtime
+  hosts: localhost
+  tasks:
+    - name: install java runtime
+      apt: 
+        name: "{{ item }}"
+        update_cache: yes
+        state: present
+      become: true
+      become_method: sudo
+      with_items:
+        - default-jre
+        - default-jdk

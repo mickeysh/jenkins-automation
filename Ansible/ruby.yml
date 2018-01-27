@@ -1,0 +1,35 @@
+- name: install ruby
+  hosts: localhost
+  tasks:
+    - name: Ruby | Install ruby RVM related packages
+      apt:
+        name: "{{ item }}"
+        update_cache: yes
+        state: present
+      become: true
+      become_method: sudo
+      with_items:
+        - software-properties-common
+
+    - name: Ruby | Add RVM apt repo
+      apt_repository:
+        repo: ppa:rael-gc/rvm
+        state: present
+      become: true
+      become_method: sudo
+
+    - name: Ruby | Install RVM
+      apt:
+        name: "{{ item }}"
+        update_cache: yes
+        state: present
+      become: true
+      become_method: sudo
+      with_items:
+        - ruby
+        - rvm
+    
+    - name: Ruby | Install required gems
+      shell: gem install minitest-reporters
+      become: true
+      become_method: sudo

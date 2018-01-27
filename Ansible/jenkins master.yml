@@ -1,0 +1,25 @@
+---
+- name: Install Jenkins master server
+  hosts: localhost
+  tasks: 
+    - name: Jenkins | Install Jenkins | APT Key 
+      apt_key:
+        url: "https://pkg.jenkins.io/debian/jenkins-ci.org.key"
+        state: present
+      become: true
+      become_method: sudo
+
+    - name: Jenkins | Install Jenkins | APT Repo 
+      apt_repository:
+        repo:deb http://pkg.jenkins.io/debian-stable binary
+        state: present
+      become: true
+      become_method: sudo
+
+    - name: Jenkins | Install Jenkins | Install Jenkins
+      apt:
+        name: jenkins
+        update_cache: yes
+        state: present
+      become: true
+      become_method: sudo
