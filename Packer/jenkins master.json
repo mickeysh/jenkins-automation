@@ -21,8 +21,8 @@
         "most_recent": true
       },
       "ssh_username": "ubuntu",
-      "ami_name": "jenkins-slave-{{isotime | clean_ami_name}}",
-      "ami_description": "An Ubuntu AMI that with Ruby and docker installed.",
+      "ami_name": "jenkins-master-{{isotime | clean_ami_name}}",
+      "ami_description": "An Ubuntu AMI with Ruby, docker and Jenkins installed.",
       "instance_type": "t2.micro"
     }],
     "provisioners": [{
@@ -51,7 +51,7 @@
         "playbook_file": "../Ansible/java.yml"
       },{
         "type": "ansible-local",
-        "playbook_file": "../Ansible/registry.yml"
+        "playbook_file": "../Ansible/jenkins master.yml"
       }
     ]
   }
