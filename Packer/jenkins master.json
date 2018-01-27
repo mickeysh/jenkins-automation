@@ -51,7 +51,7 @@
         "playbook_file": "../Ansible/java.yml"
       },{
         "type": "ansible-local",
-        "playbook_file": "../Ansible/jenkins master.yml"
+        "playbook_file": "../Ansible/jenkins-master.yml"
       }
     ]
   }
