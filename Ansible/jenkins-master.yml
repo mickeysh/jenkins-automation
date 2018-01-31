@@ -11,7 +11,7 @@
 
     - name: Jenkins | Install Jenkins | APT Repo 
       apt_repository:
-        repo:deb http://pkg.jenkins.io/debian-stable binary
+        repo: 'deb http://pkg.jenkins.io/debian-stable binary/'
         state: present
       become: true
       become_method: sudo
